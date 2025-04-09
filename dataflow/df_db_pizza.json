@@ -1,0 +1,65 @@
+{
+	"name": "df_db_pizza",
+	"properties": {
+		"folder": {
+			"name": "DB"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "orderDetails_csv",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_tlb_orderFacts",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          order_details_id as string,",
+				"          order_id as string,",
+				"          pizza_id as string,",
+				"          quantity as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          order_facts_id as string,",
+				"          order_id as string,",
+				"          pizza_id as string,",
+				"          pizza_type_id as string,",
+				"          quantity as integer,",
+				"          price as double",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          order_facts_id = order_details_id,",
+				"          order_id,",
+				"          pizza_id,",
+				"          quantity",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
