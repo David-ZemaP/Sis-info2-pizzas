@@ -1,0 +1,17 @@
+{
+	"name": "ls_sql_db_pizzas",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "sql-ucb-sisinfo2-12620185.database.windows.net",
+			"database": "pizza_db",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "David",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDM2OEJFMEZELTBGMkEtNDQ0MS04RDM0LUYzMTM5MEI5QzlCOF85NzhiZDI3MC1kNDgwLTQ4NWQtOWQ0NC03OTJhZmE2OWQ3YWYiDQp9"
+		}
+	}
+}
